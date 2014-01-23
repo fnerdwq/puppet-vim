@@ -19,7 +19,7 @@ class vim {
       owner   => root,
       group   => root,
       mode    => '0644',
-      source  => 'puppet:///modules/vimrc.local',
+      source  => 'puppet:///modules/vim/vimrc.local',
       require => Package['vim']
     }
   }
@@ -28,7 +28,7 @@ class vim {
     owner   => root,
     group   => root,
     mode    => '0644',
-    source  => 'puppet:///modules/vim.sh',
+    source  => 'puppet:///modules/vim/vim.sh',
     require => Package['vim']
   }
 
