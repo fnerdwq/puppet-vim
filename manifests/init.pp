@@ -14,14 +14,22 @@ class vim {
       path        => ['/bin', '/usr/bin'],
       require     => Package['vim', 'vim-puppet']
     }
+  }
 
-    file {'/etc/vim/vimrc.local':
-      owner   => root,
-      group   => root,
-      mode    => '0644',
-      source  => 'puppet:///modules/vim/vimrc.local',
-      require => Package['vim']
-    }
+  $additional_configuration=''
+
+  $configdir = $::osfamily ? {
+    RedHat  => '/etc',
+    Debian  => '/etc/vim',
+    default => fail("Module ${module_name} is not supported on ${::operatingsystem}/${::osfamily}")
+  }
+
+  file {"${configdir}/vimrc":
+    owner   => root,
+    group   => root,
+    mode    => '0644',
+    content => template("/vim/vimrc.${::osfamily}.erb"),
+    require => Package['vim']
   }
 
   file {'/etc/profile.d/vim.sh':
