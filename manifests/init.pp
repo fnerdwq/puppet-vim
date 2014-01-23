@@ -24,11 +24,12 @@ class vim {
     default => fail("Module ${module_name} is not supported on ${::operatingsystem}/${::osfamily}")
   }
 
-  file {"${configdir}/vimrc":
+  file {'vimrc':
+    name    => "${configdir}/vimrc",
     owner   => root,
     group   => root,
     mode    => '0644',
-    content => template("/vim/vimrc.${::osfamily}.erb"),
+    content => template("vim/vimrc.${::osfamily}.erb"),
     require => Package['vim']
   }
 
