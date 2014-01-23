@@ -1,7 +1,15 @@
 # simple class configuring vim defaults
 class vim {
-  package {'vim': ensure => present }
+  $package = $::osfamily ? {
+    RedHat  => 'vim-enhanced',
+    Debian  => 'vim',
+    default => fail("Module ${module_name} is not supported on ${::operatingsystem}/${::osfamily}")
+  }
 
+  package { 'vim':
+    ensure => present,
+    name   => $package,
+  }
 
   if $::osfamily == 'Debian' {
     # addon
