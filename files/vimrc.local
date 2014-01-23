@@ -3,7 +3,7 @@
 " Switch Syntax higlighting on
 syntax on
 " for dark backgrounds
-s background=dark
+set background=dark
 " change comment color
 highlight Comment term=bold ctermfg=lightblue guifg=lightblue
 
