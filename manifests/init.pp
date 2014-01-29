@@ -41,7 +41,7 @@ class vim (
     'highlight Comment term=bold ctermfg=lightblue guifg=lightblue',
     'set viminfo=\'10,\"100,:20,%,n~/.viminfo', # remeber things over exit
     'set autoindent' ],
-  $extra_packages = $puppet::params::extra_packages,
+  $extra_packages = $vim::params::extra_packages,
   $syntax_enable  = ['puppet']
 ) inherits vim::params {
 
