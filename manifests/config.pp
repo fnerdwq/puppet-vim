@@ -14,7 +14,6 @@ class vim::config {
     group   => root,
     mode    => '0644',
     content => template("vim/vimrc.${::osfamily}.erb"),
-    require => Package['vim']
   }
 
   file {'/etc/profile.d/vim.sh':
@@ -22,7 +21,6 @@ class vim::config {
     group   => root,
     mode    => '0644',
     source  => 'puppet:///modules/vim/vim.sh',
-    require => Package['vim']
   }
 
 }
