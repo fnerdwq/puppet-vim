@@ -1,6 +1,6 @@
 # == Class: vim
 #
-# This class installing and configuring vimc.
+# This class installs and configures vimc.
 #
 # This works on Debian and RedHat like systems.
 # Puppet Version >= 3.4.0
