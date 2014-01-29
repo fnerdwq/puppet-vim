@@ -1,52 +1,51 @@
-# simple class configuring vim defaults
-class vim {
-  $package = $::osfamily ? {
-    RedHat  => 'vim-enhanced',
-    Debian  => 'vim',
-    default => fail("Module ${module_name} is not supported on ${::operatingsystem}/${::osfamily}")
-  }
+# == Class: vim
+#
+# This class installing and configuring vimc.
+#
+# This works on Debian and RedHat like systems.
+# Puppet Version >= 3.4.0
+#
+# === Parameters
+#
+# [*configuration*]
+#   An array containing configurations lines to be appended to the global
+#   vimrc.
+#   *Optional* (defaults to some usefull settings)
+#
+# [*extra_packages*]
+#   Array of extra packages to install for vim, in particular userfull for
+#   syntax packages in Debian like systems.
+#   *Optional* (defaults to vim-puppet for Debian, empty for RedHat)
+#
+# [*syntax_enable*]
+#   Syntax name to globally enable through vim-addon-manager, only on Debian
+#   like systems!
+#   *Optional* (defaults to puppet)
+#
+# === Examples
+#
+# include vim
+#
+# === Authors
+#
+# Frederik Wagner <wagner@wagit.de>
+#
+# === Copyright
+#
+# Copyright 2014 Frederik Wagner
+#
+class vim (
+  $configuration = [
+    'syntax on',
+    'set background=dark',
+    'highlight Comment term=bold ctermfg=lightblue guifg=lightblue',
+    'set viminfo=\'10,\"100,:20,%,n~/.viminfo', # remeber things over exit
+    'set autoindent' ],
+  $extra_packages = $puppet::params::extra_packages,
+  $syntax_enable  = ['puppet']
+) inherits vim::params {
 
-  package { 'vim':
-    ensure => present,
-    name   => $package,
-  }
-
-  if $::osfamily == 'Debian' {
-    # addon
-    package {'vim-puppet': ensure => present, require => Package['vim'] }
-
-    exec { 'puppet syntax':
-      command     => 'vim-addon-manager -w install puppet',
-      environment => ['HOME=/tmp'], # vim-addon-manager wants a set HOME dir (bug)
-      unless      => 'vim-addon-manager -qw status puppet | grep -q installed',
-      path        => ['/bin', '/usr/bin'],
-      require     => Package['vim', 'vim-puppet']
-    }
-  }
-
-  $additional_configuration=''
-
-  $configdir = $::osfamily ? {
-    RedHat  => '/etc',
-    Debian  => '/etc/vim',
-    default => fail("Module ${module_name} is not supported on ${::operatingsystem}/${::osfamily}")
-  }
-
-  file {'vimrc':
-    name    => "${configdir}/vimrc",
-    owner   => root,
-    group   => root,
-    mode    => '0644',
-    content => template("vim/vimrc.${::osfamily}.erb"),
-    require => Package['vim']
-  }
-
-  file {'/etc/profile.d/vim.sh':
-    owner   => root,
-    group   => root,
-    mode    => '0644',
-    source  => 'puppet:///modules/vim/vim.sh',
-    require => Package['vim']
-  }
+  class {'vim::install': }
+  -> class {'vim::config': }
 
 }
