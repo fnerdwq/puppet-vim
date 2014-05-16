@@ -8,7 +8,7 @@ class vim::install {
 
   $extra_packages = any2array($vim::extra_packages)
   package { $extra_packages:
-    ensure => present
+    ensure => latest,
   }
 
 }
