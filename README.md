@@ -1,4 +1,7 @@
-#puppet-vim
+
+#Puppet Vim Module
+
+[![Build Status](https://travis-ci.org/fnerdwq/puppet-vim.svg?branch=master)](https://travis-ci.org/fnerdwq/puppet-vim)
 
 ####Table of Contents
 
