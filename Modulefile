@@ -6,3 +6,6 @@ license 'Apache License, Version 2.0'
 summary 'Puppet module for vim'
 description 'Small vim configuration module'
 project_page 'https://github.com/fnerdwq/puppet-vim'
+
+dependency 'puppetlabs/stdlib', '>= 4.0.0'
+
