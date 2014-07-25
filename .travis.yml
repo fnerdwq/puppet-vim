@@ -3,7 +3,7 @@ rvm:
   - "1.8.7"
   - "1.9.3"
   - "2.0.0"
-script: "rake spec"
+script: rake spec --trace
 branches:
   only:
     - master
