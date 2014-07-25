@@ -2,6 +2,7 @@
 *.swp
 *.bak
 .rvmrc
+.ruby-*
 .bundle/
 vendor/
 Gemfile.lock
