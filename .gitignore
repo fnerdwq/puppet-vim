@@ -1,3 +1,9 @@
 *~
 *.swp
 *.bak
+.rvmrc
+.bundle/
+vendor/
+Gemfile.lock
+coverage/
+spec/fixtures/*
