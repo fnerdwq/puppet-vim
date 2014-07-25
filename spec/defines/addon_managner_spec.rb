@@ -18,5 +18,5 @@ describe 'vim::addon_manager' do
 end
 
 
-at_exit { RSpec::Puppet::Coverage.report! }
+#at_exit { RSpec::Puppet::Coverage.report! }
 
