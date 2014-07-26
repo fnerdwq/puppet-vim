@@ -17,6 +17,3 @@ describe 'vim' do
 
 end
 
-
-#at_exit { RSpec::Puppet::Coverage.report! }
-
