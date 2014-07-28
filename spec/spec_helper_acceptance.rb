@@ -1,15 +1,8 @@
 require 'beaker-rspec'
 require 'pry'
 
-#hosts.each do |host|
-#  install_puppet
-#end
-
 hosts.each do |host|
-  # Install Puppet
-  install_package host, 'rubygems'
-  on host, 'gem install puppet --no-ri --no-rdoc'
-  on host, "mkdir -p #{host['distmoduledir']}"
+  install_puppet
 end
 
 UNSUPPORTED_PLATFORMS = ['Suse','windows','AIX','Solaris']
