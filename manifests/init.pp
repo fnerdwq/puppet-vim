@@ -35,14 +35,9 @@
 # Copyright 2014 Frederik Wagner
 #
 class vim (
-  $configuration = [
-    'syntax on',
-    'set background=dark',
-    'highlight Comment term=bold ctermfg=lightblue guifg=lightblue',
-    'set viminfo=\'10,\"100,:20,%,n~/.viminfo', # remeber things over exit
-    'set autoindent' ],
+  $configuration  = $vim::params::configuration,
   $extra_packages = $vim::params::extra_packages,
-  $syntax_enable  = ['puppet']
+  $syntax_enable  = $vim::params::syntax_enable,
 ) inherits vim::params {
 
   class {'vim::install': }
