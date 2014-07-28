@@ -1,5 +1,5 @@
 # installs vim (private)
-class vim::install {
+class vim::install inherits vim::params {
 
   package { 'vim':
     ensure => present,

@@ -1,10 +1,12 @@
 # simple class configuring vim
-class vim::config {
+class vim::config inherits vim::params {
 
   # on Debian like globally enable extra syntax, if package installed
   # see parameter $extra_packages
   if $::osfamily == 'Debian' {
-    vim::addon{ $vim::syntax_enable: }
+
+    $syntax_enable = any2array($vim::syntax_enable)
+    vim::addon{ $syntax_enable: }
   }
 
   $configuration = any2array($vim::configuration)
