@@ -19,8 +19,6 @@
 
 This small vim module installs and configures vim.
 
-Written for Puppet >= 3.4.0.
-
 ##Module Description
 
 See [Overview](#overview) for now.
@@ -49,14 +47,12 @@ include vim
 
 ##Limitations:
 
-Debian like systems. 
 Tested on:
 
 * Debian 7
-* CentOs 6
-
-Puppet Version >= 3.4.0, due to specific hiera usage.
+* Ubuntu 12.04
+* CentOS 6
 
 ##TODOs:
 
-* make it work with puppet pre 3.4 
+...

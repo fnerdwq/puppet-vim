@@ -8,3 +8,4 @@ vendor/
 Gemfile.lock
 coverage/
 spec/fixtures/*
+.vagrant
