@@ -19,10 +19,10 @@ class vim::config inherits vim::params {
   }
 
   file {'/etc/profile.d/vim.sh':
-    owner   => root,
-    group   => root,
-    mode    => '0644',
-    source  => 'puppet:///modules/vim/vim.sh',
+    owner  => root,
+    group  => root,
+    mode   => '0644',
+    source => 'puppet:///modules/vim/vim.sh',
   }
 
 }
