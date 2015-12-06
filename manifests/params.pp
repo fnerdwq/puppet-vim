@@ -10,12 +10,12 @@ class vim::params {
   $syntax_enable  = ['puppet']
 
   case  $::osfamily {
-    Debian: {
+    'Debian': {
       $package = 'vim'
       $extra_packages = ['vim-puppet']
       $configdir = '/etc/vim'
     }
-    RedHat:  {
+    'RedHat':  {
       $package = 'vim-enhanced'
       $extra_packages = []
       $configdir = '/etc'
